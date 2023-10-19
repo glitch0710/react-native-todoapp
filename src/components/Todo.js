@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import React from "react";
-import { Card, Text } from "react-native-paper";
+import { Card, Text, Button } from "react-native-paper";
 
 const Todo = (props) => {
   let taskStatus = "STATUS: ";
@@ -13,12 +13,16 @@ const Todo = (props) => {
 
   return (
     <View>
-      <Card style={{marginBottom: 15}}>
-        <Card.Title title={taskStatus} />
+      <Card style={{ marginBottom: 15 }}>
         <Card.Content>
           <Text variant="titleLarge">{props.task}</Text>
-          <Text variant="bodyMedium">asdasdasd</Text>
+          <Text variant="bodyMedium">{taskStatus}</Text>
         </Card.Content>
+        <Card.Actions>
+          <Button buttonColor="green" textColor="white">
+            Mark as Done
+          </Button>
+        </Card.Actions>
       </Card>
     </View>
   );

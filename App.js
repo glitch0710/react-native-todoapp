@@ -18,12 +18,12 @@ export default function App() {
 
   return (
     <PaperProvider>
-      <View style={styles.box}>
-        <ScrollView>
+      <ScrollView style={styles.container}>
+        <View style={styles.box}>
           <Home todos={todos} />
           <StatusBar style="auto" />
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </PaperProvider>
   );
 }
@@ -32,8 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: 100,
   },
   box: {
     display: "flex",
