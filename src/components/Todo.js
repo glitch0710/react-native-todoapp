@@ -11,6 +11,10 @@ const Todo = (props) => {
     taskStatus = taskStatus + "NOT DONE";
   }
 
+  const handleChangeStatus = (id) => {
+    console.debug(id);
+  };
+
   return (
     <View>
       <Card style={{ marginBottom: 15 }}>
@@ -19,7 +23,11 @@ const Todo = (props) => {
           <Text variant="bodyMedium">{taskStatus}</Text>
         </Card.Content>
         <Card.Actions>
-          <Button buttonColor="green" textColor="white">
+          <Button
+            buttonColor="green"
+            textColor="white"
+            onPress={() => handleChangeStatus(props.taskId)}
+          >
             Mark as Done
           </Button>
         </Card.Actions>

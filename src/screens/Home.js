@@ -7,6 +7,7 @@ const Home = (props) => {
   const saveDataTodo = (enteredTodoData) => {
     const todoData = {
       ...enteredTodoData,
+      id: Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString(),
     };
 
     props.onShowTodoData(todoData);

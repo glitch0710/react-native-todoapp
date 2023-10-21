@@ -5,12 +5,12 @@ import Home from "./src/screens/Home";
 import { useState } from "react";
 
 const dummyTodo = [
-  { task: "HTML I", done: true },
-  { task: "CSS", done: true },
-  { task: "Responsive design", done: true },
-  { task: "Git", done: true },
-  { task: "JavaScript I", done: true },
-  { task: "JavaScript II", done: false },
+  { id: "t1", task: "HTML I", done: true },
+  { id: "t2", task: "CSS", done: true },
+  { id: "t3", task: "Responsive design", done: true },
+  { id: "t4", task: "Git", done: true },
+  { id: "t5", task: "JavaScript I", done: true },
+  { id: "t6", task: "JavaScript II", done: false },
 ];
 
 export default function App() {
@@ -20,8 +20,6 @@ export default function App() {
     setTodos((prevTodo) => {
       return [enteredTodoData, ...prevTodo];
     });
-
-    console.debug(todos)
   };
 
   return (

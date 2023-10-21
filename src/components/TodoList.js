@@ -6,7 +6,7 @@ const TodoList = (props) => {
   return (
     <View style={{marginTop: 15}}>
       {props.todos.map((todo, index) => (
-        <Todo key={index} task={todo.task} status={todo.done} />
+        <Todo key={index} taskId={todo.id} task={todo.task} status={todo.done} />
       ))}
     </View>
   );
