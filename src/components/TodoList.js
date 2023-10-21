@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import Todo from "./Todo";
+import { Text } from "react-native-paper";
 
 const TodoList = (props) => {
   const updateTodo = (enteredUpdateTodo) => {
@@ -11,10 +12,19 @@ const TodoList = (props) => {
     props.onUpdateTodo(todoData);
   };
 
+  const doneCount = props.todos.filter((todo) => todo.done === true).length;
+  const notDoneCount = props.todos.filter((todo) => todo.done === false).length;
+
   return (
     <View style={{ marginTop: 15 }}>
       <View style={{ marginBottom: 20 }}>
-        <Text style={{ marginBottom: 20 }}>TODOS</Text>
+        <Text
+          variant="headlineSmall"
+          style={{ marginBottom: 20, color: "green", fontWeight: "bold" }}
+        >
+          TODOS
+        </Text>
+        {notDoneCount <= 0 && <Text>No new todos</Text>}
         {props.todos.map((todo, index) => {
           if (!todo.done) {
             return (
@@ -30,7 +40,15 @@ const TodoList = (props) => {
         })}
       </View>
       <View>
-        <Text style={{ marginBottom: 20 }}>DONE</Text>
+        <Text
+          variant="headlineSmall"
+          style={{ marginBottom: 20, color: "orange", fontWeight: "bold" }}
+        >
+          DONE
+        </Text>
+        {doneCount <= 0 && (
+          <Text style={{ marginBottom: 20 }}>No done todos</Text>
+        )}
         {props.todos.map((todo, index) => {
           if (todo.done) {
             return (

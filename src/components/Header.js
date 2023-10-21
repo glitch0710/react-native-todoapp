@@ -23,7 +23,7 @@ export default function Header(props) {
       <Text>Type in new todo and hit enter</Text>
       <TextInput
         onSubmitEditing={addTodoHandler}
-        label="Todo"
+        label="Add New Todo"
         value={text}
         onChangeText={(text) => setText(text)}
         mode="outlined"
