@@ -24,25 +24,29 @@ export default function App() {
 
   const updateTodoHandler = (enteredTodoData) => {
     const newTodoList = todos.map((item) => {
-      if (item.id === enteredTodoData.id){
+      if (item.id === enteredTodoData.id) {
         const updatedTodo = {
           ...item,
           done: !item.done,
-        }
+        };
 
-        return updatedTodo
+        return updatedTodo;
       }
-      return item
-    })
+      return item;
+    });
 
-    setTodos(newTodoList)
-  }
+    setTodos(newTodoList);
+  };
 
   return (
     <PaperProvider>
       <ScrollView style={styles.container}>
         <View style={styles.box}>
-          <Home todos={todos} onShowTodoData={showTodoDataHandler} onUpdateTodo={updateTodoHandler} />
+          <Home
+            todos={todos}
+            onShowTodoData={showTodoDataHandler}
+            onUpdateTodo={updateTodoHandler}
+          />
           <StatusBar style="auto" />
         </View>
       </ScrollView>
