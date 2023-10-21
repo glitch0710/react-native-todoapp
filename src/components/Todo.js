@@ -5,14 +5,20 @@ import { Card, Text, Button } from "react-native-paper";
 const Todo = (props) => {
   let taskStatus = "STATUS: ";
 
-  if (props.done) {
+  if (props.status) {
     taskStatus = taskStatus + "DONE";
   } else {
     taskStatus = taskStatus + "NOT DONE";
   }
 
   const handleChangeStatus = (id) => {
-    console.debug(id);
+    const todoDataUpdated = {
+      id: id,
+      task: props.task,
+      done: true,
+    };
+
+    props.onUpdateTodo(todoDataUpdated);
   };
 
   return (

@@ -13,10 +13,18 @@ const Home = (props) => {
     props.onShowTodoData(todoData);
   };
 
+  const receiveUpdateTodo = (enteredUpdateTodo) => {
+    const todoData = {
+      ...enteredUpdateTodo,
+    }
+
+    props.onUpdateTodo(todoData)
+  }
+
   return (
     <View>
       <Header onSaveTodoData={saveDataTodo} />
-      <TodoList todos={props.todos} />
+      <TodoList todos={props.todos} onUpdateTodo={receiveUpdateTodo} />
     </View>
   );
 };
