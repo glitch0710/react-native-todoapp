@@ -23,7 +23,7 @@ export default function App() {
   };
 
   const updateTodoHandler = (enteredTodoData) => {
-    const newTodoList = dummyTodo.map((item) => {
+    const newTodoList = todos.map((item) => {
       if (item.id === enteredTodoData.id){
         const updatedTodo = {
           ...item,
