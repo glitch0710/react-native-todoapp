@@ -16,11 +16,19 @@ const dummyTodo = [
 export default function App() {
   const [todos, setTodos] = useState(dummyTodo);
 
+  const showTodoDataHandler = (enteredTodoData) => {
+    setTodos((prevTodo) => {
+      return [enteredTodoData, ...prevTodo];
+    });
+
+    console.debug(todos)
+  };
+
   return (
     <PaperProvider>
       <ScrollView style={styles.container}>
         <View style={styles.box}>
-          <Home todos={todos} />
+          <Home todos={todos} onShowTodoData={showTodoDataHandler} />
           <StatusBar style="auto" />
         </View>
       </ScrollView>

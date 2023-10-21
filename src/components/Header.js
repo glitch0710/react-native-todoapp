@@ -2,12 +2,16 @@ import { Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
 
-export default function Header() {
+export default function Header(props) {
   const [text, setText] = useState("");
 
   const addTodoHandler = () => {
-    console.debug("submitted");
-    setText("")
+    const todoData = {
+      task: text,
+    };
+
+    props.onSaveTodoData(todoData);
+    setText("");
   };
 
   return (
