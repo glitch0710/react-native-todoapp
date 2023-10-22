@@ -20,7 +20,7 @@ const TodoList = (props) => {
     props.onDeleteTodo(todoData);
   };
 
-  const doneCount = props.todos.filter((todo) => todo.done === true).length;
+  const doneCount = props.todos.filter((todo) => todo.done === true && todo.delete === false).length;
   const notDoneCount = props.todos.filter((todo) => todo.done === false).length;
   
   return (

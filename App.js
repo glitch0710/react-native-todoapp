@@ -20,8 +20,6 @@ export default function App() {
     setTodos((prevTodo) => {
       return [enteredTodoData, ...prevTodo];
     });
-
-    console.debug(todos)
   };
 
   const deleteTodoHandler = (selectedTodoData) => {
@@ -38,7 +36,6 @@ export default function App() {
     });
 
     setTodos(newTodoList);
-    console.debug(todos)
   };
 
   const updateTodoHandler = (enteredTodoData) => {
@@ -55,7 +52,6 @@ export default function App() {
     });
 
     setTodos(newTodoList);
-    console.debug(todos)
   };
 
   return (
