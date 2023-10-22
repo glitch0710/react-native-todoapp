@@ -5,12 +5,12 @@ import Home from "./src/screens/Home";
 import { useState } from "react";
 
 const dummyTodo = [
-  { id: "t1", task: "HTML I", done: false },
-  { id: "t2", task: "CSS", done: false },
-  { id: "t3", task: "Responsive design", done: false },
-  { id: "t4", task: "Git", done: true },
-  { id: "t5", task: "JavaScript I", done: true },
-  { id: "t6", task: "JavaScript II", done: false },
+  { id: "t1", task: "HTML I", done: false, delete: false },
+  { id: "t2", task: "CSS", done: false, delete: false },
+  { id: "t3", task: "Responsive design", done: false, delete: false },
+  { id: "t4", task: "Git", done: true, delete: false },
+  { id: "t5", task: "JavaScript I", done: true, delete: false },
+  { id: "t6", task: "JavaScript II", done: false, delete: false },
 ];
 
 export default function App() {
@@ -20,6 +20,25 @@ export default function App() {
     setTodos((prevTodo) => {
       return [enteredTodoData, ...prevTodo];
     });
+
+    console.debug(todos)
+  };
+
+  const deleteTodoHandler = (selectedTodoData) => {
+    const newTodoList = todos.map((item) => {
+      if (item.id === selectedTodoData.id) {
+        const updatedTodo = {
+          ...item,
+          delete: !item.delete,
+        };
+
+        return updatedTodo;
+      }
+      return item;
+    });
+
+    setTodos(newTodoList);
+    console.debug(todos)
   };
 
   const updateTodoHandler = (enteredTodoData) => {
@@ -36,6 +55,7 @@ export default function App() {
     });
 
     setTodos(newTodoList);
+    console.debug(todos)
   };
 
   return (
@@ -46,6 +66,7 @@ export default function App() {
             todos={todos}
             onShowTodoData={showTodoDataHandler}
             onUpdateTodo={updateTodoHandler}
+            onDeleteTodo={deleteTodoHandler}
           />
           <StatusBar style="auto" />
         </View>

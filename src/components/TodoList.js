@@ -12,9 +12,17 @@ const TodoList = (props) => {
     props.onUpdateTodo(todoData);
   };
 
+  const deleteTodo = (selectedTodoData) => {
+    const todoData = {
+      ...selectedTodoData,
+    };
+
+    props.onDeleteTodo(todoData);
+  };
+
   const doneCount = props.todos.filter((todo) => todo.done === true).length;
   const notDoneCount = props.todos.filter((todo) => todo.done === false).length;
-
+  
   return (
     <View style={{ marginTop: 15 }}>
       <View style={{ marginBottom: 20 }}>
@@ -33,6 +41,7 @@ const TodoList = (props) => {
                 taskId={todo.id}
                 task={todo.task}
                 status={todo.done}
+                delete={todo.delete}
                 onUpdateTodo={updateTodo}
               />
             );
@@ -50,14 +59,16 @@ const TodoList = (props) => {
           <Text style={{ marginBottom: 20 }}>No done todos</Text>
         )}
         {props.todos.map((todo, index) => {
-          if (todo.done) {
+          if (todo.done && todo.delete === false) {
             return (
               <Todo
                 key={index}
                 taskId={todo.id}
                 task={todo.task}
                 status={todo.done}
+                delete={todo.delete}
                 onUpdateTodo={updateTodo}
+                onDeleteTodo={deleteTodo}
               />
             );
           }

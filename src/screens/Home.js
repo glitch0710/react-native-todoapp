@@ -7,11 +7,21 @@ const Home = (props) => {
   const saveDataTodo = (enteredTodoData) => {
     const todoData = {
       ...enteredTodoData,
+      done: false,
+      delete: false,
       id: Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString(),
     };
 
     props.onShowTodoData(todoData);
   };
+  
+  const receiveDeleteTodo = (selectedTodoData) => {
+    const todoData = {
+      ...selectedTodoData,
+    }
+
+    props.onDeleteTodo(todoData)
+  }
 
   const receiveUpdateTodo = (enteredUpdateTodo) => {
     const todoData = {
@@ -24,7 +34,7 @@ const Home = (props) => {
   return (
     <View>
       <Header onSaveTodoData={saveDataTodo} />
-      <TodoList todos={props.todos} onUpdateTodo={receiveUpdateTodo} />
+      <TodoList todos={props.todos} onUpdateTodo={receiveUpdateTodo} onDeleteTodo={receiveDeleteTodo} />
     </View>
   );
 };
