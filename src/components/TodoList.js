@@ -32,7 +32,7 @@ const TodoList = (props) => {
         >
           TODOS
         </Text>
-        {notDoneCount <= 0 && <Text>No new todos</Text>}
+        {notDoneCount <= 0 && <View style={{ alignItems: "center" }}><Text variant="titleMedium">No new todos</Text></View>}
         {props.todos.map((todo, index) => {
           if (!todo.done) {
             return (
@@ -56,7 +56,7 @@ const TodoList = (props) => {
           DONE
         </Text>
         {doneCount <= 0 && (
-          <Text style={{ marginBottom: 20 }}>No done todos</Text>
+          <View style={{ alignItems: "center" }}><Text variant="titleMedium" style={{ marginBottom: 20 }}>No done todos</Text></View>
         )}
         {props.todos.map((todo, index) => {
           if (todo.done && todo.delete === false) {
