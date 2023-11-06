@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { PaperProvider } from "react-native-paper";
+import { Provider as StoreProvider } from "react-redux";
 import Home from "./src/screens/Home";
 import { useState } from "react";
 
