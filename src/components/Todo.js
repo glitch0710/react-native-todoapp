@@ -1,8 +1,12 @@
 import { View } from "react-native";
 import React from "react";
 import { Card, Text, Button } from "react-native-paper";
+import { useDispatch } from "react-redux";
+import { completeTodo } from "../redux/actions/todoActions";
 
 const Todo = (props) => {
+  const dispatch = useDispatch();
+
   const handleChangeStatus = (id) => {
     const todoDataUpdated = {
       id: id,
@@ -11,7 +15,8 @@ const Todo = (props) => {
       delete: false,
     };
 
-    props.onUpdateTodo(todoDataUpdated);
+    // props.onUpdateTodo(todoDataUpdated);
+    dispatch(completeTodo(todoDataUpdated))
   };
 
   const handleDeleteStatus = (id) => {

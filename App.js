@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import { Provider as StoreProvider } from "react-redux";
+import { store } from './src/redux/store'
 import Home from "./src/screens/Home";
 import { useState } from "react";
 
@@ -49,19 +50,21 @@ export default function App() {
   };
 
   return (
-    <PaperProvider>
-      <ScrollView style={styles.container}>
-        <View style={styles.box}>
-          <Home
-            todos={todos}
-            onShowTodoData={showTodoDataHandler}
-            onUpdateTodo={updateTodoHandler}
-            onDeleteTodo={deleteTodoHandler}
-          />
-          <StatusBar style="auto" />
-        </View>
-      </ScrollView>
-    </PaperProvider>
+    <StoreProvider store={store}>
+      <PaperProvider>
+        <ScrollView style={styles.container}>
+          <View style={styles.box}>
+            <Home
+              todos={todos}
+              onShowTodoData={showTodoDataHandler}
+              onUpdateTodo={updateTodoHandler}
+              onDeleteTodo={deleteTodoHandler}
+            />
+            <StatusBar style="auto" />
+          </View>
+        </ScrollView>
+      </PaperProvider>
+    </StoreProvider>
   );
 }
 

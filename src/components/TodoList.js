@@ -2,6 +2,8 @@ import { View } from "react-native";
 import React from "react";
 import Todo from "./Todo";
 import { Text } from "react-native-paper";
+import store from '../redux/store'
+import { useSelector } from 'react-redux'
 
 const TodoList = (props) => {
   const updateTodo = (enteredUpdateTodo) => {
@@ -20,8 +22,10 @@ const TodoList = (props) => {
     props.onDeleteTodo(todoData);
   };
 
-  const doneCount = props.todos.filter((todo) => todo.done === true && todo.delete === false).length;
-  const notDoneCount = props.todos.filter((todo) => todo.done === false).length;
+  const todos = useSelector((state) => state.todos.todos);
+
+  const doneCount = todos.filter((todo) => todo.done === true && todo.delete === false).length;
+  const notDoneCount = todos.filter((todo) => todo.done === false).length;
   
   return (
     <View style={{ marginTop: 15 }}>
@@ -33,7 +37,7 @@ const TodoList = (props) => {
           TODOS
         </Text>
         {notDoneCount <= 0 && <View style={{ alignItems: "center" }}><Text variant="titleMedium">No new todos</Text></View>}
-        {props.todos.map((todo, index) => {
+        {todos.map((todo, index) => {
           if (!todo.done) {
             return (
               <Todo
@@ -58,7 +62,7 @@ const TodoList = (props) => {
         {doneCount <= 0 && (
           <View style={{ alignItems: "center" }}><Text variant="titleMedium" style={{ marginBottom: 20 }}>No done todos</Text></View>
         )}
-        {props.todos.map((todo, index) => {
+        {todos.map((todo, index) => {
           if (todo.done && todo.delete === false) {
             return (
               <Todo
