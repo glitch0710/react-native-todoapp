@@ -1,17 +1,27 @@
 import { View } from "react-native";
-import React from "react";
+import { React, useEffect } from "react";
 import Todo from "./Todo";
 import { Text } from "react-native-paper";
-import store from '../redux/store'
-import { useSelector } from 'react-redux'
+import store from "../redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { getTodos } from "../redux/actions/todoActions";
 
 const TodoList = () => {
+  const { todos } = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+  const fetchTodos = () => dispatch(getTodos());
 
-  const todos = useSelector((state) => state.todos.todos);
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
-  const doneCount = todos.filter((todo) => todo.done === true && todo.delete === false).length;
+  console.debug(todos);
+
+  const doneCount = todos.filter(
+    (todo) => todo.done === true && todo.delete === false
+  ).length;
   const notDoneCount = todos.filter((todo) => todo.done === false).length;
-  
+
   return (
     <View style={{ marginTop: 15 }}>
       <View style={{ marginBottom: 20 }}>
@@ -21,7 +31,11 @@ const TodoList = () => {
         >
           TODOS
         </Text>
-        {notDoneCount <= 0 && <View style={{ alignItems: "center" }}><Text variant="titleMedium">No new todos</Text></View>}
+        {notDoneCount <= 0 && (
+          <View style={{ alignItems: "center" }}>
+            <Text variant="titleMedium">No new todos</Text>
+          </View>
+        )}
         {todos.map((todo, index) => {
           if (!todo.done) {
             return (
@@ -44,7 +58,11 @@ const TodoList = () => {
           DONE
         </Text>
         {doneCount <= 0 && (
-          <View style={{ alignItems: "center" }}><Text variant="titleMedium" style={{ marginBottom: 20 }}>No done todos</Text></View>
+          <View style={{ alignItems: "center" }}>
+            <Text variant="titleMedium" style={{ marginBottom: 20 }}>
+              No done todos
+            </Text>
+          </View>
         )}
         {todos.map((todo, index) => {
           if (todo.done && todo.delete === false) {

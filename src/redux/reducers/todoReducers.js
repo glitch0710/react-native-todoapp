@@ -2,6 +2,7 @@ import {
   ADD_TODO,
   COMPLETE_TODO,
   DELETE_TODO,
+  GET_TODO,
 } from "../constants/todoConstants";
 
 const initialState = {
@@ -10,6 +11,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case GET_TODO:
+      return {
+        ...state,
+        todos: action.payload,
+      };
+
     case ADD_TODO:
       return {
         ...state,
