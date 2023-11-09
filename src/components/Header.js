@@ -12,9 +12,8 @@ export default function Header() {
   const addTodoHandler = () => {
 
     const todoData = {
-      task: text,
-      done: false,
-      delete: false,
+      title: text,
+      completed: false,
       id: Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString(),
     };
 

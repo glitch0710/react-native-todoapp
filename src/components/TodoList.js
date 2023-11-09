@@ -15,12 +15,8 @@ const TodoList = () => {
     fetchTodos();
   }, []);
 
-  console.debug(todos);
-
-  const doneCount = todos.filter(
-    (todo) => todo.done === true && todo.delete === false
-  ).length;
-  const notDoneCount = todos.filter((todo) => todo.done === false).length;
+  const doneCount = todos.filter((todo) => todo.completed === true && todo.userId === 1).length;
+  const notDoneCount = todos.filter((todo) => todo.completed === false && todo.userId === 1).length;
 
   return (
     <View style={{ marginTop: 15 }}>
@@ -37,14 +33,13 @@ const TodoList = () => {
           </View>
         )}
         {todos.map((todo, index) => {
-          if (!todo.done) {
+          if (!todo.completed && todo.userId === 1) {
             return (
               <Todo
                 key={index}
                 taskId={todo.id}
-                task={todo.task}
-                status={todo.done}
-                delete={todo.delete}
+                task={todo.title}
+                status={todo.completed}
               />
             );
           }
@@ -65,14 +60,13 @@ const TodoList = () => {
           </View>
         )}
         {todos.map((todo, index) => {
-          if (todo.done && todo.delete === false) {
+          if (todo.completed && todo.userId === 1) {
             return (
               <Todo
                 key={index}
                 taskId={todo.id}
-                task={todo.task}
-                status={todo.done}
-                delete={todo.delete}
+                task={todo.title}
+                status={todo.completed}
               />
             );
           }

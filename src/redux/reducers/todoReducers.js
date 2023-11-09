@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
 
           return {
             ...todo,
-            done: !todo.done,
+            completed: !todo.completed,
           };
         }),
       };

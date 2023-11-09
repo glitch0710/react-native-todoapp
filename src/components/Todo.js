@@ -12,21 +12,9 @@ const Todo = (props) => {
       id: id,
       task: props.task,
       done: true,
-      delete: false,
     };
 
     dispatch(completeTodo(todoDataUpdated));
-  };
-
-  const handleDeleteStatus = (id) => {
-    const todoDataUpdated = {
-      id: id,
-      task: props.task,
-      done: true,
-      delete: true,
-    };
-
-    dispatch(deleteTodo(todoDataUpdated));
   };
 
   return (
@@ -46,15 +34,6 @@ const Todo = (props) => {
           >
             {props.status ? "Undo" : "Mark as Done"}
           </Button>
-          {props.status && (
-            <Button
-              buttonColor="red"
-              textColor="white"
-              onPress={() => handleDeleteStatus(props.taskId)}
-            >
-              Delete
-            </Button>
-          )}
         </Card.Actions>
       </Card>
     </View>
