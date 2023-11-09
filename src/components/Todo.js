@@ -2,7 +2,7 @@ import { View } from "react-native";
 import React from "react";
 import { Card, Text, Button } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { completeTodo } from "../redux/actions/todoActions";
+import { completeTodo, deleteTodo } from "../redux/actions/todoActions";
 
 const Todo = (props) => {
   const dispatch = useDispatch();
@@ -15,8 +15,7 @@ const Todo = (props) => {
       delete: false,
     };
 
-    // props.onUpdateTodo(todoDataUpdated);
-    dispatch(completeTodo(todoDataUpdated))
+    dispatch(completeTodo(todoDataUpdated));
   };
 
   const handleDeleteStatus = (id) => {
@@ -27,7 +26,7 @@ const Todo = (props) => {
       delete: true,
     };
 
-    props.onDeleteTodo(todoDataUpdated);
+    dispatch(deleteTodo(todoDataUpdated));
   };
 
   return (

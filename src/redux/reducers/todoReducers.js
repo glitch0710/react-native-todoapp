@@ -17,14 +17,34 @@ export default (state = initialState, action) => {
       };
 
     case COMPLETE_TODO:
-      return state.todos.map((todo) => {
-        if (todo.id === action.payload.id) {
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id !== action.payload.id) {
+            return todo;
+          }
+
+          return {
+            ...todo,
+            done: !todo.done,
+          };
+        }),
+      };
+
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id !== action.payload.id) {
+            return todo;
+          }
+
           return {
             ...todo,
             delete: !todo.delete,
           };
-        }
-      });
+        }),
+      };
 
     default:
       return state;

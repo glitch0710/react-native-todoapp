@@ -5,22 +5,7 @@ import { Text } from "react-native-paper";
 import store from '../redux/store'
 import { useSelector } from 'react-redux'
 
-const TodoList = (props) => {
-  const updateTodo = (enteredUpdateTodo) => {
-    const todoData = {
-      ...enteredUpdateTodo,
-    };
-
-    props.onUpdateTodo(todoData);
-  };
-
-  const deleteTodo = (selectedTodoData) => {
-    const todoData = {
-      ...selectedTodoData,
-    };
-
-    props.onDeleteTodo(todoData);
-  };
+const TodoList = () => {
 
   const todos = useSelector((state) => state.todos.todos);
 
@@ -46,7 +31,6 @@ const TodoList = (props) => {
                 task={todo.task}
                 status={todo.done}
                 delete={todo.delete}
-                onUpdateTodo={updateTodo}
               />
             );
           }
@@ -71,8 +55,6 @@ const TodoList = (props) => {
                 task={todo.task}
                 status={todo.done}
                 delete={todo.delete}
-                onUpdateTodo={updateTodo}
-                onDeleteTodo={deleteTodo}
               />
             );
           }
