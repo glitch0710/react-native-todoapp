@@ -15,6 +15,7 @@ export default function Header() {
       title: text,
       completed: false,
       id: Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString(),
+      userId: 1,
     };
 
     dispatch(addTodo(todoData));
