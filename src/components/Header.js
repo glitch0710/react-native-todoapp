@@ -1,16 +1,24 @@
 import { Text, View, Image } from "react-native";
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { TextInput } from "react-native-paper";
+import { addTodo } from "../redux/actions/todoActions";
+import { store } from "../redux/store";
 
-export default function Header(props) {
+export default function Header() {
+  const dispatch = useDispatch();
   const [text, setText] = useState("");
 
   const addTodoHandler = () => {
+
     const todoData = {
-      task: text,
+      title: text,
+      completed: false,
+      id: Math.floor(Math.random() * (9999 - 1000 + 1) + 1000).toString(),
+      userId: 1,
     };
 
-    props.onSaveTodoData(todoData);
+    dispatch(addTodo(todoData));
     setText("");
   };
 

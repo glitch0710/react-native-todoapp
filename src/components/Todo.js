@@ -1,28 +1,20 @@
 import { View } from "react-native";
 import React from "react";
 import { Card, Text, Button } from "react-native-paper";
+import { useDispatch } from "react-redux";
+import { completeTodo, deleteTodo } from "../redux/actions/todoActions";
 
 const Todo = (props) => {
+  const dispatch = useDispatch();
+
   const handleChangeStatus = (id) => {
     const todoDataUpdated = {
       id: id,
       task: props.task,
       done: true,
-      delete: false,
     };
 
-    props.onUpdateTodo(todoDataUpdated);
-  };
-
-  const handleDeleteStatus = (id) => {
-    const todoDataUpdated = {
-      id: id,
-      task: props.task,
-      done: true,
-      delete: true,
-    };
-
-    props.onDeleteTodo(todoDataUpdated);
+    dispatch(completeTodo(todoDataUpdated));
   };
 
   return (
@@ -42,15 +34,6 @@ const Todo = (props) => {
           >
             {props.status ? "Undo" : "Mark as Done"}
           </Button>
-          {props.status && (
-            <Button
-              buttonColor="red"
-              textColor="white"
-              onPress={() => handleDeleteStatus(props.taskId)}
-            >
-              Delete
-            </Button>
-          )}
         </Card.Actions>
       </Card>
     </View>
